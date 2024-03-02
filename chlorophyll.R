@@ -22,3 +22,13 @@ attributes(cmes_data$var)
 # Multiband ####
 # Raster object using chlorophyll data
 multi_transp <- brick(ncfile, varname = 'CHL')
+
+# Analysis using the raster object ####
+# Statistical summary
+# Mean and standard deviation estimates
+polygon_mean <- calc(multi_transp, fun = mean)
+polygon_sd <- calc(multi_transp, fun = sd)
+
+# Plot multiband data
+plot(polygon_mean, main = "Average Chlorophyll")
+plot(polygon_sd, main = "Standard deviation Chlorophyll")
