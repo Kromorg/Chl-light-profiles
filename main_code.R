@@ -21,4 +21,4 @@ attributes(cmes_data$var)
 
 # Multiband ####
 # Multiband data extraction using NetCDF object
-multi_transp <- brick(ncfile, varname = 'variable of interest')
+variable <- brick(ncfile, varname = 'variable of interest')
