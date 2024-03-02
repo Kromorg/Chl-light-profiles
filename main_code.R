@@ -10,7 +10,7 @@ shell('cls')
 
 # NetCDF files ####
 # Object with the name of the file that will be used
-ncfile<- '.nc'
+ncfile<- 'file name.nc'
 
 # Open NetCDF file
 cmes_data <- nc_open(ncfile)
