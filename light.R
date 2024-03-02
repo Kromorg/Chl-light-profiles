@@ -22,3 +22,13 @@ attributes(cmes_data$var)
 # Multiband ####
 # Raster object using water transparency data
 multi_transp <- brick(ncfile, varname = 'KD490')
+
+# Analysis using the raster object ####
+# Statistical summary
+# Mean and standard deviation estimates
+polygon_mean <- calc(multi_transp, fun = mean)
+polygon_sd <- calc(multi_transp, fun = sd)
+
+# Plot multiband data
+plot(polygon_mean, main = "Average Kd490")
+plot(polygon_sd, main = "Standard deviation Kd490")
