@@ -20,5 +20,5 @@ print(cmes_data)
 attributes(cmes_data$var)
 
 # Multiband ####
-# Raster object using water transparency information
+# Raster object using water transparency data
 multi_transp <- brick(ncfile, varname = 'KD490')
