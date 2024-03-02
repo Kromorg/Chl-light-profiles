@@ -7,3 +7,14 @@ pacman:: p_load(tidyverse, # Data wrangling
 # Clean console ####
 rm(list = ls())
 shell('cls')
+
+# NetCDF files ####
+# Object of the file that will be used
+ncfile<- 'cmems_obs-oc_glo_bgc-plankton_my_l4-multi-4km_P1M_1693680905216.nc'
+
+# Open NetCDF file
+cmes_data <- nc_open(ncfile)
+
+# File information
+print(cmes_data)
+attributes(cmes_data$var)
