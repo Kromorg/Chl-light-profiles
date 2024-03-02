@@ -18,3 +18,7 @@ cmes_data <- nc_open(ncfile)
 # File information
 print(cmes_data)
 attributes(cmes_data$var)
+
+# Multiband ####
+# Raster object using chlorophyll data
+multi_transp <- brick(ncfile, varname = 'CHL')
