@@ -22,3 +22,13 @@ attributes(cmes_data$var)
 # Multiband ####
 # Multiband data extraction using NetCDF object
 variable <- brick(ncfile, varname = 'variable of interest')
+
+# Analysis using the raster object ####
+# Statistical summary
+# Mean and standard deviation estimates
+polygon_mean <- calc(variable, fun = mean)
+polygon_sd <- calc(variable, fun = sd)
+
+# Plot multiband data
+plot(polygon_mean, main = "Average variable")
+plot(polygon_sd, main = "Standard deviation variable")
