@@ -36,3 +36,24 @@ plot(polygon_sd, main = "Standard deviation Chlorophyll")
 # Date extraction ####
 dates <- substr(names(multi_chl), 2, 11)
 dates <- dates %>% parse_date_time("Ymd")
+
+# Extract values from numeric model ####
+sites.coords <- data.frame(Coast = rep(c('East', 'West'), each = 3), 
+        Site = c('Los Islotes Este', 'El Bajo', 'Punta Lobos',
+                 'La Ballena', 'El Gallo', 'Salvatierra'),
+        Longitude = c(24.59, 24.70, 24.47, 24.48, 24.46, 24.38),
+        Latitude = c(-110.38, -110.30, -110.28,
+                     -110.40, -110.38, -110.31)) 
+coords<- sites.coords[, 3:4]
+coordinates(coords)<- ~Long + Lat
+
+# Set coordinate reference system of multiband object
+crs(coords)<- crs(multi_chl)
+
+# Extract mean values per month
+mean.transp <-  raster:: extract(multi_chl, coords,
+                        fun = mean, na.rm = F)
+as_tibble(mean.transp) %>% print(n = 5) # Preview values
+
+rownames(mean.transp)<- sites.coords$Site # Set site names
+rownames(mean.transp)
