@@ -36,3 +36,21 @@ plot(polygon_sd, main = "Standard deviation variable")
 # Date extraction ####
 dates <- substr(names(variable), 2, 11)
 dates <- dates %>% parse_date_time("Ymd")
+
+# Extract values from numeric model ####
+sites.coords <- data.frame(Site = c('name1', 'name2'),
+                           Longitude = c(coordinates),
+                           Latitude = c(coordinates)) 
+coords<- sites.coords[, 2:3]
+coordinates(coords)<- ~Long + Lat
+
+# Set coordinate reference system of multiband object
+crs(coords)<- crs(variable)
+
+# Extract mean values per month
+mean.transp <-  raster:: extract(variable, coords,
+                        fun = mean, na.rm = F)
+as_tibble(mean.transp) %>% print(n = 5) # Preview values
+
+rownames(mean.transp)<- sites.coords$Site # Set site names
+rownames(mean.transp)
