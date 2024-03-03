@@ -32,3 +32,7 @@ polygon_sd <- calc(variable, fun = sd)
 # Plot multiband data
 plot(polygon_mean, main = "Average variable")
 plot(polygon_sd, main = "Standard deviation variable")
+
+# Date extraction ####
+dates <- substr(names(variable), 2, 11)
+dates <- dates %>% parse_date_time("Ymd")
