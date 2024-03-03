@@ -30,5 +30,9 @@ polygon_mean <- calc(multi_transp, fun = mean)
 polygon_sd <- calc(multi_transp, fun = sd)
 
 # Plot multiband data
-plot(polygon_mean, main = "Average Kd490")
-plot(polygon_sd, main = "Standard deviation Kd490")
+plot(polygon_mean, main = 'Average Kd490')
+plot(polygon_sd, main = 'Standard deviation Kd490')
+
+# Date extraction ####
+dates <- substr(names(multi_transp), 2, 11)
+dates <- dates %>% parse_date_time('Ymd')
