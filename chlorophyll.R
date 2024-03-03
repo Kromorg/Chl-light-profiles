@@ -32,3 +32,7 @@ polygon_sd <- calc(multi_chl, fun = sd)
 # Plot multiband data
 plot(polygon_mean, main = "Average Chlorophyll")
 plot(polygon_sd, main = "Standard deviation Chlorophyll")
+
+# Date extraction ####
+dates <- substr(names(multi_chl), 2, 11)
+dates <- dates %>% parse_date_time("Ymd")
