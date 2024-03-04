@@ -45,7 +45,7 @@ sites.coords <- data.frame(Coast = rep(c('East', 'West'), each = 3),
         Latitude = c(-110.38, -110.30, -110.28,
                      -110.40, -110.38, -110.31)) 
 coords<- sites.coords[, 3:4]
-coordinates(coords)<- ~Long + Lat
+coordinates(coords)<- ~Longitude + Latitude
 
 # Set coordinate reference system of multiband object
 crs(coords)<- crs(variable)
