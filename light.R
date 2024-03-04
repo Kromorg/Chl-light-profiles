@@ -66,7 +66,8 @@ rownames(mean.transp)
 
 islotes.kd490 <- mean.transp[1, ]
 islotes.transp <- data.frame(date = dates,
-                             Transparency = c(islotes.kd490))
+                        Site = c('Los Islotes'),
+                        Transparency = c(islotes.kd490))
 
 # Interanual Kd490 average value
 round(mean(islotes.transp$Transparency), 2)
