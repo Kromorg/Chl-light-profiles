@@ -73,7 +73,7 @@ islotes.transp <- data.frame(date = dates,
 round(mean(islotes.transp$Transparency), 2)
 
 # Transform Kd490 to KdPAR (light attenuation coefficient)
-interanual.islotes <- data.frame(islotes.transp,
+interanual.kdpar <- data.frame(islotes.transp,
                            k = 0.0864+
                              (0.884*islotes.transp$Transparency)-
                              (0.00137*islotes.transp$Transparency^-1))
