@@ -53,9 +53,9 @@ coordinates(coords)<- ~Longitude + Latitude
 crs(coords)<- crs(multi_chl)
 
 # Extract mean values per month
-mean.transp <-  raster:: extract(multi_chl, coords,
+mean.chl <-  raster:: extract(multi_chl, coords,
                         fun = mean, na.rm = F)
-as_tibble(mean.transp) %>% print(n = 5) # Preview values
+as_tibble(mean.chl) %>% print(n = 5) # Preview values
 
-rownames(mean.transp)<- sites.coords$Site # Set site names
-rownames(mean.transp)
+rownames(mean.chl)<- sites.coords$Site # Set site names
+rownames(mean.chl)
