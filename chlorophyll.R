@@ -2,7 +2,7 @@
 pacman:: p_load(tidyverse, # Data wrangling
                 ncdf4, # NetCDF file
                 raster, # Raster objects and extract values
-                gridExtra) # Multiple plots
+                sp) # Spatial data
 
 # Clean console ####
 rm(list = ls())
