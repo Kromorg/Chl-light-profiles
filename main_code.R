@@ -42,7 +42,7 @@ sites.coords <- data.frame(Site = c('name1', 'name2'),
                            Longitude = c(coordinates),
                            Latitude = c(coordinates)) 
 coords<- sites.coords[, 2:3]
-coordinates(coords)<- ~Long + Lat
+coordinates(coords)<- ~Longitude + Latitude
 
 # Set coordinate reference system of multiband object
 crs(coords)<- crs(variable)
