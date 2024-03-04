@@ -39,12 +39,12 @@ dates <- dates %>% parse_date_time("Ymd")
 
 # Extract values from numeric model ####
 sites.coords <- data.frame(Coast = rep(c('East', 'West'), each = 3), 
-        Site = c('Los Islotes Este', 'El Bajo', 'Punta Lobos',
+        Site = c('Los Islotes', 'El Bajo', 'Punta Lobos',
                  'La Ballena', 'El Gallo', 'Salvatierra'),
-        Latitude = c(-110.388601, -110.301147, -110.28774,
-                        -110.405131, -110.386226, -110.312299),
-        Longitude = c(24.59989, 24.70392, 24.47584,
+        Latitude = c(24.59989, 24.70392, 24.47584,
                         24.486929, 24.467158, 24.386501),
+        Longitude = c(-110.388601, -110.301147, -110.28774,
+                        -110.405131, -110.386226, -110.312299),
                 stringsAsFactors = T)
 coords<- sites.coords[, 3:4]
 coordinates(coords)<- ~Longitude + Latitude
@@ -59,3 +59,23 @@ as_tibble(mean.transp) %>% print(n = 5) # Preview values
 
 rownames(mean.transp)<- sites.coords$Site # Set site names
 rownames(mean.transp)
+
+
+# Analysis per site ####
+# Los Islotes ####
+
+islotes.kd490 <- mean.transp[1, ]
+islotes.transp <- data.frame(date = dates,
+                             Transparency = c(islotes.kd490))
+
+# Interanual Kd490 average value
+round(mean(islotes.transp$Transparency), 2)
+
+# Transform Kd490 to KdPAR (light attenuation coefficient)
+interanual.islotes <- data.frame(islotes.transp,
+                           k = 0.0864+
+                             (0.884*islotes.transp$Transparency)-
+                             (0.00137*islotes.transp$Transparency^-1))
+
+
+
