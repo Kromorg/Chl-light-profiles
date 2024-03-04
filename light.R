@@ -10,31 +10,31 @@ shell('cls')
 
 # NetCDF files ####
 # Object of the file that will be used
-ncfile<- 'cmems_obs-oc_glo_bgc-transp_my_l4-multi-4km_P1M_1693461359433.nc'
+ncfile <- 'cmems_obs-oc_glo_bgc-transp_my_l4-multi-4km_P1M_1693461359433.nc'
 
 # Open NetCDF file
-cmes_data <- nc_open(ncfile)
+cmes.data <- nc_open(ncfile)
 
 # File information
-print(cmes_data)
-attributes(cmes_data$var)
+print(cmes.data)
+attributes(cmes.data$var)
 
 # Multiband ####
 # Raster object using water transparency data
-multi_transp <- brick(ncfile, varname = 'KD490')
+multi.transp <- brick(ncfile, varname = 'KD490')
 
 # Analysis using the raster object ####
 # Statistical summary
 # Mean and standard deviation estimates
-polygon_mean <- calc(multi_transp, fun = mean)
-polygon_sd <- calc(multi_transp, fun = sd)
+polygon.mean <- calc(multi.transp, fun = mean)
+polygon.sd <- calc(multi.transp, fun = sd)
 
 # Plot multiband data
-plot(polygon_mean, main = "Average Kd490")
-plot(polygon_sd, main = "Standard deviation Kd490")
+plot(polygon.mean, main = "Average Kd490")
+plot(polygon.sd, main = "Standard deviation Kd490")
 
 # Date extraction ####
-dates <- substr(names(multi_transp), 2, 11)
+dates <- substr(names(multi.transp), 2, 11)
 dates <- dates %>% parse_date_time("Ymd")
 
 # Extract values from numeric model ####
@@ -46,18 +46,18 @@ sites.coords <- data.frame(Coast = rep(c('East', 'West'), each = 3),
         Longitude = c(-110.388601, -110.301147, -110.28774,
                         -110.405131, -110.386226, -110.312299),
                 stringsAsFactors = T)
-coords<- sites.coords[, 3:4]
-coordinates(coords)<- ~Longitude + Latitude
+coords <- sites.coords[, 3:4]
+coordinates(coords) <- ~Longitude + Latitude
 
 # Set coordinate reference system of multiband object
-crs(coords)<- crs(multi_transp)
+crs(coords) <- crs(multi.transp)
 
 # Extract mean values per month
-mean.transp <-  raster:: extract(multi_transp, coords,
+mean.transp <-  raster:: extract(multi.transp, coords,
                         fun = mean, na.rm = F)
 as_tibble(mean.transp) %>% print(n = 5) # Preview values
 
-rownames(mean.transp)<- sites.coords$Site # Set site names
+rownames(mean.transp) <- sites.coords$Site # Set site names
 rownames(mean.transp)
 
 
