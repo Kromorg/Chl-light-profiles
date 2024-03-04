@@ -48,10 +48,10 @@ coords<- sites.coords[, 3:4]
 coordinates(coords)<- ~Longitude + Latitude
 
 # Set coordinate reference system of multiband object
-crs(coords)<- crs(variable)
+crs(coords)<- crs(multi_transp)
 
 # Extract mean values per month
-mean.transp <-  raster:: extract(variable, coords,
+mean.transp <-  raster:: extract(multi_transp, coords,
                         fun = mean, na.rm = F)
 as_tibble(mean.transp) %>% print(n = 5) # Preview values
 
