@@ -41,9 +41,11 @@ dates <- dates %>% parse_date_time("Ymd")
 sites.coords <- data.frame(Coast = rep(c('East', 'West'), each = 3), 
         Site = c('Los Islotes Este', 'El Bajo', 'Punta Lobos',
                  'La Ballena', 'El Gallo', 'Salvatierra'),
-        Longitude = c(24.59, 24.70, 24.47, 24.48, 24.46, 24.38),
-        Latitude = c(-110.38, -110.30, -110.28,
-                     -110.40, -110.38, -110.31)) 
+        Latitude = c(24.59989, 24.70392, 24.47584,
+                        24.486929, 24.467158, 24.386501),
+        Longitude = c(-110.388601, -110.301147, -110.28774,
+                        -110.405131, -110.386226, -110.312299),
+        stringsAsFactors = T)
 coords<- sites.coords[, 3:4]
 coordinates(coords)<- ~Long + Lat
 
