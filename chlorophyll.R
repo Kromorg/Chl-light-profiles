@@ -59,3 +59,17 @@ as_tibble(mean.chl) %>% print(n = 5) # Preview values
 
 rownames(mean.chl)<- sites.coords$Site # Set site names
 rownames(mean.chl)
+
+# Analysis per site ####
+# Los Islotes ####
+
+islotes.chl <- mean.chl[1, ]
+
+# Surface chlorophyll correction
+islotes.produc <- data.frame(date = dates,
+                        Site = c('Los Islotes'),
+                        Chlorophyll = islotes.chl*0.9)
+
+
+# Interanual chlorophyll average value
+round(mean(islotes.produc$Chlorophyll), 2)
