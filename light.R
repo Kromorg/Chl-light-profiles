@@ -4,9 +4,11 @@ pacman:: p_load(tidyverse, # Data wrangling
                 raster, # Raster objects and extract values
                 sp) # Spatial data
 
+
 # Clean console ####
 rm(list = ls())
 shell('cls')
+
 
 # NetCDF files ####
 # Object of the file that will be used
@@ -19,9 +21,11 @@ cmes.data <- nc_open(ncfile)
 print(cmes.data)
 attributes(cmes.data$var)
 
+
 # Multiband ####
 # Raster object using water transparency data
 multi.transp <- brick(ncfile, varname = 'KD490')
+
 
 # Analysis using the raster object ####
 # Statistical summary
@@ -33,9 +37,11 @@ polygon.sd <- calc(multi.transp, fun = sd)
 plot(polygon.mean, main = "Average Kd490")
 plot(polygon.sd, main = "Standard deviation Kd490")
 
+
 # Date extraction ####
 dates <- substr(names(multi.transp), 2, 11)
 dates <- dates %>% parse_date_time("Ymd")
+
 
 # Extract values from numeric model ####
 sites.coords <- data.frame(Coast = rep(c('East', 'West'), each = 3), 
@@ -63,7 +69,6 @@ rownames(mean.transp)
 
 # Analysis per site ####
 # Los Islotes ####
-
 islotes.kd490 <- mean.transp[1, ]
 islotes.transp <- data.frame(date = dates,
                         Site = c('Los Islotes'),
@@ -80,7 +85,6 @@ interanual.kdpar <- data.frame(islotes.transp,
 
 
 # El Bajo ####
-
 ebes.kd490 <- mean.transp[2, ]
 ebes.transp <- data.frame(date = dates,
                         Site = c('El Bajo'),
@@ -95,3 +99,4 @@ round(mean(ebes.transp$k), 2)
 
 # Add El Bajo values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, ebes.transp)
+
