@@ -86,11 +86,12 @@ ebes.transp <- data.frame(date = dates,
                         Site = c('El Bajo'),
                         Transparency = ebes.kd490,
                         k = 0.0864+
-                             (0.884*ebes.transp$Transparency)-
-                             (0.00137*ebes.transp$Transparency^-1))
+                             (0.884*ebes.kd490)-
+                             (0.00137*ebes.kd490^-1))
 
-# Interanual Kd490 average value
+# Interanual Kd490 and KdPAR average value
 round(mean(ebes.transp$Transparency), 2)
+round(mean(ebes.transp$k), 2)
 
-# Transform Kd490 to KdPAR (light attenuation coefficient)
+# Add El Bajo values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, ebes.transp)
