@@ -225,7 +225,7 @@ graph.islotes<- ggplot()+
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
   labs(y = 'Depth (m)', x = 'Irradiance (%)',
-          subtitle = c('A) Los Islotes'))+
+          subtitle = c('Los Islotes'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -269,7 +269,7 @@ graph.ebes<- ggplot()+
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
   labs(y = NULL, x = 'Irradiance (%)',
-          subtitle = c('B) El Bajo'))+
+          subtitle = c('El Bajo'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -357,7 +357,7 @@ graph.ballena<- ggplot()+
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
   labs(y = 'Depth (m)', x = NULL, ,
-          subtitle = c('D) La Ballena'))+
+          subtitle = c('La Ballena'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -401,7 +401,7 @@ graph.gallo<- ggplot()+
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
   labs(y = 'Depth (m)', x = NULL,
-          subtitle = c('E) El Gallo'))+
+          subtitle = c('El Gallo'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -446,7 +446,7 @@ graph.ship<- ggplot()+
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
   labs(y = 'Depth (m)', x = NULL,
-          subtitle = c('F) Salvatierra'))+
+          subtitle = c('Salvatierra'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
