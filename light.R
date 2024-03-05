@@ -179,6 +179,6 @@ gallo.transp, ship.kd490, ship.transp)
 
 # Monthly summary at each site ####
 interanual.kdpar <- interanual.kdpar %>%
-        group_by(month(date), Site) %>%
+        group_by(Site, month(date)) %>%
         summarise(Mean_k = mean(k))
 as_tibble(interanual.kdpar)
