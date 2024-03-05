@@ -227,7 +227,7 @@ graph.islotes<- ggplot()+
   labs(y = 'Depth (m)', x = 'Irradiance (%)')+
   annotate('text', x = 75, y = 25, label = 'A) Los Islotes',
            size = 5)+
-  scale_y_reverse()+ scale_fill_lancet()+
+  scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
   geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
@@ -239,4 +239,4 @@ graph.islotes<- ggplot()+
         legend.text = element_text(size = 15),
         legend.title = element_text(size = 17))
 
-light.islotes
+graph.islotes
