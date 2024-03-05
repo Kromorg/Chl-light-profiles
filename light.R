@@ -375,3 +375,47 @@ graph.ballena<- ggplot()+
         legend.title = element_text(size = 17))
 
 graph.ballena
+
+# El Gallo ####
+# February
+k <- monthly.summary %>% filter(Month == 'February' &
+                              Site == 'El Gallo') %>% 
+     dplyr:: select(Mean_k)
+z <- seq(from = 0, to = 100, by = 1)
+p <- seq(from = 100, to = 0, by = -1)
+feb <- data.frame(Depth = z, Month = 'February',
+                 Irradiance = p*exp(-k[[2]]*z))
+
+# September
+k <- monthly.summary %>% filter(Month == 'September' &
+                              Site == 'El Gallo') %>% 
+     dplyr:: select(Mean_k)
+z <- seq(from = 0, to = 100, by = 1)
+p <- seq(from = 100, to = 0, by = -1)
+sept <- data.frame(Depth = z, Month = 'September',
+                 Irradiance = p*exp(-k[[2]]*z))
+
+# Merge and create graphical object
+light.gallo <- rbind(feb, sept)
+
+graph.gallo<- ggplot()+
+  geom_jitter(data = light.gallo,
+              aes(x = Irradiance, y = Depth, fill = Month),
+              shape = 21, size = 3, alpha = 0.4,
+              show.legend = F)+
+  labs(y = 'Depth (m)', x = NULL)+
+  annotate('text', x = 75, y = 25, label = 'E) El Gallo',
+           size = 5)+
+  scale_y_reverse()+
+  scale_x_discrete(position = 'top')+
+  scale_x_continuous(position = 'top')+
+  geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
+             colour = c('forestgreen', 'darkorange',
+                        'darkred'), linetype = 'dotted')+
+  theme_bw(base_size = 13)+
+  theme(panel.grid = element_blank(),
+        axis.line = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 17))
+
+graph.gallo
