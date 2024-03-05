@@ -67,7 +67,7 @@ rownames(mean.transp)
 islotes.kd490 <- mean.transp[1, ]
 islotes.transp <- data.frame(date = dates,
                         Site = c('Los Islotes'),
-                        Transparency = c(islotes.kd490))
+                        Transparency = islotes.kd490)
 
 # Interanual Kd490 average value
 round(mean(islotes.transp$Transparency), 2)
@@ -79,4 +79,18 @@ interanual.kdpar <- data.frame(islotes.transp,
                              (0.00137*islotes.transp$Transparency^-1))
 
 
+# El Bajo ####
 
+ebes.kd490 <- mean.transp[2, ]
+ebes.transp <- data.frame(date = dates,
+                        Site = c('El Bajo'),
+                        Transparency = ebes.kd490,
+                        k = 0.0864+
+                             (0.884*ebes.transp$Transparency)-
+                             (0.00137*ebes.transp$Transparency^-1))
+
+# Interanual Kd490 average value
+round(mean(ebes.transp$Transparency), 2)
+
+# Transform Kd490 to KdPAR (light attenuation coefficient)
+interanual.kdpar <- rbind(interanual.kdpar, ebes.transp)
