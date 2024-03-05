@@ -196,7 +196,7 @@ monthly.summary$Month<- factor(monthly.summary$Month,
 
 
 # Light percentge per site ####
-# Los Islotes
+# Los Islotes ####
 
 # February
 k <- monthly.summary %>% filter(Month == 'February' &
@@ -240,3 +240,48 @@ graph.islotes<- ggplot()+
         legend.title = element_text(size = 17))
 
 graph.islotes
+
+
+# El Bajo ####
+# February
+k <- monthly.summary %>% filter(Month == 'February' &
+                              Site == 'El Bajo') %>% 
+     dplyr:: select(Mean_k)
+z <- seq(from = 0, to = 100, by = 1)
+p <- seq(from = 100, to = 0, by = -1)
+feb <- data.frame(Depth = z, Month = 'February',
+                 Irradiance = p*exp(-k[[2]]*z))
+
+# September
+k <- monthly.summary %>% filter(Month == 'September' &
+                              Site == 'El Bajo') %>% 
+     dplyr:: select(Mean_k)
+z <- seq(from = 0, to = 100, by = 1)
+p <- seq(from = 100, to = 0, by = -1)
+sept <- data.frame(Depth = z, Month = 'September',
+                 Irradiance = p*exp(-k[[2]]*z))
+
+# Merge and create graphical object
+light.ebes <- rbind(feb, sept)
+
+graph.ebes<- ggplot()+
+  geom_jitter(data = light.ebes,
+              aes(x = Irradiance, y = Depth, fill = Month),
+              shape = 21, size = 3, alpha = 0.4,
+              show.legend = F)+
+  labs(y = 'Depth (m)', x = 'Irradiance (%)')+
+  annotate('text', x = 75, y = 25, label = 'B) El Bajo',
+           size = 5)+
+  scale_y_reverse()+
+  scale_x_discrete(position = 'top')+
+  scale_x_continuous(position = 'top')+
+  geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
+             colour = c('forestgreen', 'darkorange',
+                        'darkred'), linetype = 'dotted')+
+  theme_bw(base_size = 13)+
+  theme(panel.grid = element_blank(),
+        axis.line = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 17))
+
+graph.ebes
