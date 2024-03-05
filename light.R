@@ -201,7 +201,7 @@ monthly.summary$Month<- factor(monthly.summary$Month,
 # February
 k <- monthly.summary %>% filter(Month == 'February' &
                               Site == 'Los Islotes') %>% 
-     dplyr:: select(Mean_k) %>% unlist()
+     dplyr:: select(Mean_k)
 z <- seq(from = 0, to = 100, by = 1)
 p <- seq(from = 100, to = 0, by = -1)
 feb <- data.frame(Depth = z, Month = 'February',
@@ -210,7 +210,7 @@ feb <- data.frame(Depth = z, Month = 'February',
 # September
 k <- monthly.summary %>% filter(Month == 'September' &
                               Site == 'Los Islotes') %>% 
-     dplyr:: select(Mean_k) %>% unlist()
+     dplyr:: select(Mean_k)
 z <- seq(from = 0, to = 100, by = 1)
 p <- seq(from = 100, to = 0, by = -1)
 sept <- data.frame(Depth = z, Month = 'September',
