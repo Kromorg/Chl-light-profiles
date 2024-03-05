@@ -464,3 +464,11 @@ graph.ship<- ggplot()+
         legend.title = element_text(size = 17))
 
 graph.ship
+
+
+# Final graph ####
+gridExtra::grid.arrange(graph.islotes, graph.ebes, graph.lobos,
+                        graph.ballena, graph.gallo, graph.ship,
+                        ncol = 3, nrow = 2)
+ggsave('Estimated light.jpg', dpi = 320, width = 2560,
+     height = 2048, units = 'px')
