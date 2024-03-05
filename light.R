@@ -224,9 +224,8 @@ graph.islotes<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = 'Irradiance (%)')+
-  annotate('text', x = 75, y = 25, label = 'A) Los Islotes',
-           size = 5)+
+  labs(y = 'Depth (m)', x = 'Irradiance (%)',
+          subtitle = c('A) Los Islotes'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -269,9 +268,8 @@ graph.ebes<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = 'Irradiance (%)')+
-  annotate('text', x = 75, y = 25, label = 'B) El Bajo',
-           size = 5)+
+  labs(y = NULL, x = 'Irradiance (%)',
+          subtitle = c('B) El Bajo'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -314,9 +312,8 @@ graph.lobos<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = 'Irradiance (%)')+
-  annotate('text', x = 75, y = 25, label = 'C) Punta Lobos',
-           size = 5)+
+  labs(y = NULL, x = 'Irradiance (%)',
+          subtitle = c('Punta Lobos'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -359,9 +356,8 @@ graph.ballena<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = NULL)+
-  annotate('text', x = 75, y = 25, label = 'D) La Ballena',
-           size = 5)+
+  labs(y = 'Depth (m)', x = NULL, ,
+          subtitle = c('D) La Ballena'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -371,6 +367,7 @@ graph.ballena<- ggplot()+
   theme_bw(base_size = 13)+
   theme(panel.grid = element_blank(),
         axis.line = element_blank(),
+        axis.text.x = element_blank(),
         legend.text = element_text(size = 15),
         legend.title = element_text(size = 17))
 
@@ -403,9 +400,8 @@ graph.gallo<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = NULL)+
-  annotate('text', x = 75, y = 25, label = 'E) El Gallo',
-           size = 5)+
+  labs(y = 'Depth (m)', x = NULL,
+          subtitle = c('E) El Gallo'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -415,6 +411,7 @@ graph.gallo<- ggplot()+
   theme_bw(base_size = 13)+
   theme(panel.grid = element_blank(),
         axis.line = element_blank(),
+        axis.text.x = element_blank(),
         legend.text = element_text(size = 15),
         legend.title = element_text(size = 17))
 
@@ -448,9 +445,8 @@ graph.ship<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = NULL)+
-  annotate('text', x = 75, y = 25, label = 'F) Salvatierra',
-           size = 5)+
+  labs(y = 'Depth (m)', x = NULL,
+          subtitle = c('F) Salvatierra'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
@@ -460,6 +456,7 @@ graph.ship<- ggplot()+
   theme_bw(base_size = 13)+
   theme(panel.grid = element_blank(),
         axis.line = element_blank(),
+        axis.text.x = element_blank(),
         legend.text = element_text(size = 15),
         legend.title = element_text(size = 17))
 
@@ -467,8 +464,8 @@ graph.ship
 
 
 # Final graph ####
-gridExtra::grid.arrange(graph.islotes, graph.ebes, graph.lobos,
+final <- gridExtra::grid.arrange(graph.islotes, graph.ebes, graph.lobos,
                         graph.ballena, graph.gallo, graph.ship,
                         ncol = 3, nrow = 2)
-ggsave('Estimated light.jpg', dpi = 320, width = 2560,
-     height = 2048, units = 'px')
+ggsave('Estimated light.jpeg', plot = final, dpi = 320,
+          width = 3000, height = 2500, units = 'px')
