@@ -151,3 +151,20 @@ round(mean(gallo.transp$k), 2)
 # Add La Ballena values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, gallo.transp)
 
+
+# Salvatierra ####
+ship.kd490 <- mean.transp[5, ]
+ship.transp <- data.frame(date = dates,
+                        Site = c('Salvatierra'),
+                        Transparency = ship.kd490,
+                        k = 0.0864+
+                             (0.884*ship.kd490)-
+                             (0.00137*ship.kd490^-1))
+
+# Interanual Kd490 and KdPAR average value
+round(mean(ship.transp$Transparency), 2)
+round(mean(ship.transp$k), 2)
+
+# Add La Ballena values to the interanual base
+interanual.kdpar <- rbind(interanual.kdpar, ship.transp)
+
