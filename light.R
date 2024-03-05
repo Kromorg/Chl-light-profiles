@@ -134,3 +134,20 @@ round(mean(ballena.transp$k), 2)
 # Add La Ballena values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, ballena.transp)
 
+
+# El Gallo ####
+gallo.kd490 <- mean.transp[5, ]
+gallo.transp <- data.frame(date = dates,
+                        Site = c('El Gallo'),
+                        Transparency = gallo.kd490,
+                        k = 0.0864+
+                             (0.884*gallo.kd490)-
+                             (0.00137*gallo.kd490^-1))
+
+# Interanual Kd490 and KdPAR average value
+round(mean(gallo.transp$Transparency), 2)
+round(mean(gallo.transp$k), 2)
+
+# Add La Ballena values to the interanual base
+interanual.kdpar <- rbind(interanual.kdpar, gallo.transp)
+
