@@ -175,3 +175,10 @@ dates, sites.coords, coords, mean.transp, islotes.kd490,
 islotes.transp, ebes.kd490, ebes.transp, lobos.kd490,
 lobos.transp, ballena.kd490, ballena.transp, gallo.kd490,
 gallo.transp, ship.kd490, ship.transp)
+
+
+# Monthly summary at each site ####
+interanual.kdpar <- interanual.kdpar %>%
+        group_by(month(date), Site) %>%
+        summarise(Mean_k = mean(k))
+as_tibble(interanual.kdpar)
