@@ -100,6 +100,7 @@ round(mean(ebes.transp$k), 2)
 # Add El Bajo values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, ebes.transp)
 
+
 # Punta Lobos ####
 lobos.kd490 <- mean.transp[3, ]
 lobos.transp <- data.frame(date = dates,
@@ -115,3 +116,21 @@ round(mean(lobos.transp$k), 2)
 
 # Add Punta Lobos values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, lobos.transp)
+
+
+# La Ballena ####
+ballena.kd490 <- mean.transp[4, ]
+ballena.transp <- data.frame(date = dates,
+                        Site = c('La Ballena'),
+                        Transparency = ballena.kd490,
+                        k = 0.0864+
+                             (0.884*ballena.kd490)-
+                             (0.00137*ballena.kd490^-1))
+
+# Interanual Kd490 and KdPAR average value
+round(mean(ballena.transp$Transparency), 2)
+round(mean(ballena.transp$k), 2)
+
+# Add La Ballena values to the interanual base
+interanual.kdpar <- rbind(interanual.kdpar, ballena.transp)
+
