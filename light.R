@@ -100,3 +100,18 @@ round(mean(ebes.transp$k), 2)
 # Add El Bajo values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, ebes.transp)
 
+# Punta Lobos ####
+lobos.kd490 <- mean.transp[3, ]
+lobos.transp <- data.frame(date = dates,
+                        Site = c('Punta Lobos'),
+                        Transparency = lobos.kd490,
+                        k = 0.0864+
+                             (0.884*lobos.kd490)-
+                             (0.00137*lobos.kd490^-1))
+
+# Interanual Kd490 and KdPAR average value
+round(mean(lobos.transp$Transparency), 2)
+round(mean(lobos.transp$k), 2)
+
+# Add Punta Lobos values to the interanual base
+interanual.kdpar <- rbind(interanual.kdpar, lobos.transp)
