@@ -238,3 +238,5 @@ graph.islotes<- ggplot()+
         axis.line = element_blank(),
         legend.text = element_text(size = 15),
         legend.title = element_text(size = 17))
+
+light.islotes
