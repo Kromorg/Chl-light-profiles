@@ -168,3 +168,10 @@ round(mean(ship.transp$k), 2)
 # Add La Ballena values to the interanual base
 interanual.kdpar <- rbind(interanual.kdpar, ship.transp)
 
+
+# Remove objects ####
+rm(ncfile, cmes.data, multi.transp, polygon.mean, polygon.sd,
+dates, sites.coords, coords, mean.transp, islotes.kd490,
+islotes.transp, ebes.kd490, ebes.transp, lobos.kd490,
+lobos.transp, ballena.kd490, ballena.transp, gallo.kd490,
+gallo.transp, ship.kd490, ship.transp)
