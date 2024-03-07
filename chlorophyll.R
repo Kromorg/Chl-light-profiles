@@ -2,7 +2,8 @@
 pacman:: p_load(tidyverse, # Data wrangling
                 ncdf4, # NetCDF file
                 raster, # Raster objects and extract values
-                sp) # Spatial data
+                sp, # Spatial data
+                ggsci) # Profiles colors
 
 # Clean console ####
 rm(list = ls())
@@ -191,8 +192,10 @@ h <- 30.2
 thick <- 25.2
 Z.m <- monthly.summary %>% filter(Month == 'February' &
                               Site == 'Los Islotes') %>%
-                thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
-                           (. - Chl_o))))^0.5)
+                dplyr:: select(Mean_chl) %>%
+        mutate(Z.m = thickthick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
+                           (. - Chl.o))))^0.5)) %>%
+        .[[3]]
 feb <- data.frame(Depth = z,
                  Month = 'February',
                  Chlorophyll = Chl.o + ((h/thick*((2*pi)^0.5)) *
@@ -202,14 +205,16 @@ feb <- data.frame(Depth = z,
 Chl.o<- 0.1
 h<- 79.4
 thick<- 27.4
-Z.m<- monthly.summary %>% filter(Month == 'February' &
+Z.m<- monthly.summary %>% filter(Month == 'September' &
                               Site == 'Los Islotes') %>%
-                thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
-                                (. - Chl_o))))^0.5)
+                dplyr:: select(Mean_chl) %>%
+         mutate(Z.m = thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
+                                (.[[2]] - Chl.o))))^0.5)) %>%
+        .[[3]]
 sept<- data.frame(Depth = z,
                  Month = 'September',
-                 Chlorophyll = Chlm.o + ((h/thick*((2*pi)^0.5)) *
-                        exp(-((z - Zmm)^2/ (2 * thick^2)))))
+                 Chlorophyll = Chl.o + ((h/thick*((2*pi)^0.5)) *
+                        exp(-((z - Z.m)^2/ (2 * thick^2)))))
 
 # Merge and create graphical object
 chl.islotes<-  rbind(feb, sept)
@@ -224,7 +229,7 @@ graph.islotes<- ggplot()+
        x = expression(Chlorophyll~(mg~m^{'-3'})),
        subtitle = c('Los Islotes'))+
   scale_y_reverse()+ scale_fill_lancet()+
-  geom_hline(yintercept = c(29.06, 42.28),
+  geom_hline(yintercept = c(29.06, 42.28), # 1% of light
              colour = paleta,
              linetype = c('dotted', 'dotdash'))+
   scale_x_discrete(position = 'top')+
