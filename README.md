@@ -8,4 +8,6 @@ Through this script, you can visualize how light is absorbed from the surface to
 
 Afterward, the amount of light expressed as a percentage at each meter was calculated with Beer's Law (Kirk, [2011](https://www.researchgate.net/publication/281709482_Light_and_Photosynthesis_in_Aquatic_Systems); Valiela, [2015](https://www.researchgate.net/publication/304875880_Marine_Ecological_Processes)): I<sub>z</sub> = I<sub>0</sub> * e<sup>-kz</sup>. Where *I<sub>0</sub>* is the amount of light at the surface (100%), *k* equals the estimated value of *K<sub>dPAR</sub>*, *z* is the depth (0 - 100 m), and *I<sub>z</sub>* is the amount of light at a certain depth.
 
+Plotted profiles represent the calculated values during summer (September; red) and winter (February; blue).
+
 # *chlorophyll* branch
