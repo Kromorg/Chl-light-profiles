@@ -182,3 +182,57 @@ monthly.summary$Month<- factor(monthly.summary$Month,
 
 
 # Chlorophyll profiles ####
+# Los Islotes ####
+# Cold season: February
+
+z <- seq(from = 0, to = 100, by = 1)
+Chl.o <- 0.07
+h <- 30.2
+thick <- 25.2
+Z.m <- monthly.summary %>% filter(Month == 'February' &
+                              Site == 'Los Islotes') %>%
+                thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
+                           (. - Chl_o))))^0.5)
+feb <- data.frame(Depth = z,
+                 Month = 'February',
+                 Chlorophyll = Chl.o + ((h/thick*((2*pi)^0.5)) *
+                   exp(-((z - Z.m)^2/ (2 * thick^2)))))
+
+# Warm season: September
+Chl.o<- 0.1
+h<- 79.4
+thick<- 27.4
+Z.m<- monthly.summary %>% filter(Month == 'February' &
+                              Site == 'Los Islotes') %>%
+                thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
+                                (. - Chl_o))))^0.5)
+sept<- data.frame(Depth = z,
+                 Month = 'September',
+                 Chlorophyll = Chlm.o + ((h/thick*((2*pi)^0.5)) *
+                        exp(-((z - Zmm)^2/ (2 * thick^2)))))
+
+# Merge and create graphical object
+chl.islotes<-  rbind(feb, sept)
+paleta<- pal_lancet()(2)
+
+graph.islotes<- ggplot()+
+  geom_jitter(data = chl.islotes,
+              aes(x = Chlorophyll, y = Depth, fill = Month),
+              shape = 21, size = 3, alpha = 0.4,
+              show.legend = F)+
+  labs(y = 'Depth (m)',
+       x = expression(Chlorophyll~(mg~m^{'-3'})),
+       subtitle = c('Los Islotes'))+
+  scale_y_reverse()+ scale_fill_lancet()+
+  geom_hline(yintercept = c(29.06, 42.28),
+             colour = paleta,
+             linetype = c('dotted', 'dotdash'))+
+  scale_x_discrete(position = 'top')+
+  scale_x_continuous(limits = c (0, 8), position = 'top')+
+  theme_bw(base_size = 13)+
+  theme(panel.grid = element_blank(),
+        axis.line = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 17))
+
+graph.islotes
