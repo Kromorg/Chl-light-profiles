@@ -156,8 +156,8 @@ interanual.produc <- rbind(interanual.produc, ship.produc)
 
 
 # Remove objects ####
-rm(ncfile, cmes.data, multi.transp, polygon.mean, polygon.sd,
-dates, sites.coords, coords, mean.transp, islotes.kd490,
-islotes.transp, ebes.kd490, ebes.transp, lobos.kd490,
-lobos.transp, ballena.kd490, ballena.transp, gallo.kd490,
-gallo.transp, ship.kd490, ship.transp)
+rm(ncfile, cmes.data, multi.chl, polygon.mean, polygon.sd,
+dates, sites.coords, coords, mean.chl, islotes.chl,
+islotes.chl, ebes.chl, ebes.chl, lobos.chl,
+lobos.chl, ballena.chl, ballena.chl, gallo.chl,
+gallo.chl, ship.chl, ship.chl)
