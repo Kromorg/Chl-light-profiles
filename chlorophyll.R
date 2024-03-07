@@ -13,28 +13,28 @@ shell('cls')
 ncfile<- 'cmems_obs-oc_glo_bgc-plankton_my_l4-multi-4km_P1M_1693680905216.nc'
 
 # Open NetCDF file
-cmes_data <- nc_open(ncfile)
+cmes.data <- nc_open(ncfile)
 
 # File information
-print(cmes_data)
-attributes(cmes_data$var)
+print(cmes.data)
+attributes(cmes.data$var)
 
 # Multiband ####
 # Raster object using chlorophyll data
-multi_chl <- brick(ncfile, varname = 'CHL')
+multi.chl <- brick(ncfile, varname = 'CHL')
 
 # Analysis using the raster object ####
 # Statistical summary
 # Mean and standard deviation estimates
-polygon_mean <- calc(multi_chl, fun = mean)
-polygon_sd <- calc(multi_chl, fun = sd)
+polygon.mean <- calc(multi.chl, fun = mean)
+polygon.sd <- calc(multi.chl, fun = sd)
 
 # Plot multiband data
-plot(polygon_mean, main = "Average Chlorophyll")
-plot(polygon_sd, main = "Standard deviation Chlorophyll")
+plot(polygon.mean, main = "Average Chlorophyll")
+plot(polygon.sd, main = "Standard deviation Chlorophyll")
 
 # Date extraction ####
-dates <- substr(names(multi_chl), 2, 11)
+dates <- substr(names(multi.chl), 2, 11)
 dates <- dates %>% parse_date_time("Ymd")
 
 # Extract values from numeric model ####
@@ -50,10 +50,10 @@ coords <- sites.coords[, 3:4]
 coordinates(coords)<- ~Longitude + Latitude
 
 # Set coordinate reference system of multiband object
-crs(coords) <- crs(multi_chl)
+crs(coords) <- crs(multi.chl)
 
 # Extract mean values per month
-mean.chl <-  raster:: extract(multi_chl, coords,
+mean.chl <-  raster:: extract(multi.chl, coords,
                         fun = mean, na.rm = F)
 as_tibble(mean.chl) %>% print(n = 5) # Preview values
 
@@ -154,3 +154,10 @@ round(mean(ebes.chl), 2)
 # Add El Bajo values to the interanual base
 interanual.produc <- rbind(interanual.produc, ship.produc)
 
+
+# Remove objects ####
+rm(ncfile, cmes.data, multi.transp, polygon.mean, polygon.sd,
+dates, sites.coords, coords, mean.transp, islotes.kd490,
+islotes.transp, ebes.kd490, ebes.transp, lobos.kd490,
+lobos.transp, ballena.kd490, ballena.transp, gallo.kd490,
+gallo.transp, ship.kd490, ship.transp)
