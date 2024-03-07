@@ -86,6 +86,22 @@ ebes.produc <- data.frame(date = dates,
 
 # Interanual chlorophyll average value
 round(mean(ebes.chl), 2)
+
 # Add El Bajo values to the interanual base
 interanual.produc <- rbind(interanual.produc, ebes.produc)
 
+
+# Punta Lobos ####
+lobos.chl <- mean.chl[1, ]
+
+# Surface chlorophyll correction
+lobos.produc <- data.frame(date = dates,
+                        Site = c('El Bajo'),
+                        Chlorophyll = lobos.chl*0.9)
+
+
+# Interanual chlorophyll average value
+round(mean(ebes.chl), 2)
+
+# Add El Bajo values to the interanual base
+interanual.produc <- rbind(interanual.produc, lobos.produc)
