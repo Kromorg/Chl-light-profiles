@@ -356,7 +356,7 @@ graph.ballena<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = NULL, ,
+  labs(y = 'Depth (m)', x = NULL,
           subtitle = c('La Ballena'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
