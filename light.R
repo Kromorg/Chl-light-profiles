@@ -400,7 +400,7 @@ graph.gallo<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = NULL,
+  labs(y = NULL, x = NULL,
           subtitle = c('El Gallo'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
@@ -445,7 +445,7 @@ graph.ship<- ggplot()+
               aes(x = Irradiance, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)', x = NULL,
+  labs(y = NULL, x = NULL,
           subtitle = c('Salvatierra'))+
   scale_y_reverse()+
   scale_x_discrete(position = 'top')+
