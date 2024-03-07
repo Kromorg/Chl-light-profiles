@@ -76,7 +76,7 @@ round(mean(islotes.chl), 2)
 
 
 # El Bajo ####
-ebes.chl <- mean.chl[1, ]
+ebes.chl <- mean.chl[2, ]
 
 # Surface chlorophyll correction
 ebes.produc <- data.frame(date = dates,
@@ -92,7 +92,7 @@ interanual.produc <- rbind(interanual.produc, ebes.produc)
 
 
 # Punta Lobos ####
-lobos.chl <- mean.chl[1, ]
+lobos.chl <- mean.chl[3, ]
 
 # Surface chlorophyll correction
 lobos.produc <- data.frame(date = dates,
@@ -101,14 +101,14 @@ lobos.produc <- data.frame(date = dates,
 
 
 # Interanual chlorophyll average value
-round(mean(ebes.chl), 2)
+round(mean(lobos.chl), 2)
 
 # Add El Bajo values to the interanual base
 interanual.produc <- rbind(interanual.produc, lobos.produc)
 
 
 # La Ballena ####
-ballena.chl <- mean.chl[1, ]
+ballena.chl <- mean.chl[4, ]
 
 # Surface chlorophyll correction
 ballena.produc <- data.frame(date = dates,
@@ -117,14 +117,14 @@ ballena.produc <- data.frame(date = dates,
 
 
 # Interanual chlorophyll average value
-round(mean(ebes.chl), 2)
+round(mean(ballena.chl), 2)
 
 # Add El Bajo values to the interanual base
 interanual.produc <- rbind(interanual.produc, ballena.produc)
 
 
 # El Gallo ####
-gallo.chl <- mean.chl[1, ]
+gallo.chl <- mean.chl[5, ]
 
 # Surface chlorophyll correction
 gallo.produc <- data.frame(date = dates,
@@ -133,14 +133,14 @@ gallo.produc <- data.frame(date = dates,
 
 
 # Interanual chlorophyll average value
-round(mean(ebes.chl), 2)
+round(mean(gallo.chl), 2)
 
 # Add El Bajo values to the interanual base
 interanual.produc <- rbind(interanual.produc, gallo.produc)
 
 
 # Salvatierra ####
-ship.chl <- mean.chl[1, ]
+ship.chl <- mean.chl[6, ]
 
 # Surface chlorophyll correction
 ship.produc <- data.frame(date = dates,
@@ -149,7 +149,7 @@ ship.produc <- data.frame(date = dates,
 
 
 # Interanual chlorophyll average value
-round(mean(ebes.chl), 2)
+round(mean(ship.chl), 2)
 
 # Add El Bajo values to the interanual base
 interanual.produc <- rbind(interanual.produc, ship.produc)
@@ -158,9 +158,9 @@ interanual.produc <- rbind(interanual.produc, ship.produc)
 # Remove objects ####
 rm(ncfile, cmes.data, multi.chl, polygon.mean, polygon.sd,
 dates, sites.coords, coords, mean.chl, islotes.chl,
-islotes.chl, ebes.chl, ebes.chl, lobos.chl,
-lobos.chl, ballena.chl, ballena.chl, gallo.chl,
-gallo.chl, ship.chl, ship.chl)
+ebes.chl, ebes.produc, lobos.chl,
+lobos.produc, ballena.chl, ballena.produc, gallo.chl,
+gallo.produc, ship.chl, ship.produc)
 
 
 # Monthly summary at each site ####
