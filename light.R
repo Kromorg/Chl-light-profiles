@@ -2,7 +2,8 @@
 pacman:: p_load(tidyverse, # Data wrangling
                 ncdf4, # NetCDF file
                 raster, # Raster objects and extract values
-                sp) # Spatial data
+                sp, # Spatial data
+                ggsci) # Profiles colors
 
 
 # Clean console ####
@@ -226,7 +227,7 @@ graph.islotes<- ggplot()+
               show.legend = F)+
   labs(y = 'Depth (m)', x = 'Irradiance (%)',
           subtitle = c('Los Islotes'))+
-  scale_y_reverse()+
+  scale_y_reverse()+ scale_fill_lancet()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
   geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
@@ -270,7 +271,7 @@ graph.ebes<- ggplot()+
               show.legend = F)+
   labs(y = NULL, x = 'Irradiance (%)',
           subtitle = c('El Bajo'))+
-  scale_y_reverse()+
+  scale_y_reverse()+ scale_fill_lancet()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
   geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
@@ -314,7 +315,7 @@ graph.lobos<- ggplot()+
               show.legend = F)+
   labs(y = NULL, x = 'Irradiance (%)',
           subtitle = c('Punta Lobos'))+
-  scale_y_reverse()+
+  scale_y_reverse()+ scale_fill_lancet()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
   geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
@@ -358,7 +359,7 @@ graph.ballena<- ggplot()+
               show.legend = F)+
   labs(y = 'Depth (m)', x = NULL,
           subtitle = c('La Ballena'))+
-  scale_y_reverse()+
+  scale_y_reverse()+ scale_fill_lancet()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
   geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
@@ -402,7 +403,7 @@ graph.gallo<- ggplot()+
               show.legend = F)+
   labs(y = NULL, x = NULL,
           subtitle = c('El Gallo'))+
-  scale_y_reverse()+
+  scale_y_reverse()+ scale_fill_lancet()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
   geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
@@ -447,7 +448,7 @@ graph.ship<- ggplot()+
               show.legend = F)+
   labs(y = NULL, x = NULL,
           subtitle = c('Salvatierra'))+
-  scale_y_reverse()+
+  scale_y_reverse()+ scale_fill_lancet()+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(position = 'top')+
   geom_vline(xintercept = c(10, 1, 0.1), lwd = 1.5,
