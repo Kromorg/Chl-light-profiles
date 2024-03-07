@@ -229,7 +229,7 @@ graph.islotes<- ggplot()+
        x = expression(Chlorophyll~(mg~m^{'-3'})),
        subtitle = c('Los Islotes'))+
   scale_y_reverse()+ scale_fill_lancet()+
-  geom_hline(yintercept = c(29.06, 42.28), # 1% of light
+  geom_hline(yintercept = c(18, 35), # 1% of light
              colour = paleta,
              linetype = c('dotted', 'dotdash'))+
   scale_x_discrete(position = 'top')+
