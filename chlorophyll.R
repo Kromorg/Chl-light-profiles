@@ -46,18 +46,18 @@ sites.coords <- data.frame(Coast = rep(c('East', 'West'), each = 3),
         Longitude = c(-110.388601, -110.301147, -110.28774,
                         -110.405131, -110.386226, -110.312299),
         stringsAsFactors = T)
-coords<- sites.coords[, 3:4]
+coords <- sites.coords[, 3:4]
 coordinates(coords)<- ~Longitude + Latitude
 
 # Set coordinate reference system of multiband object
-crs(coords)<- crs(multi_chl)
+crs(coords) <- crs(multi_chl)
 
 # Extract mean values per month
 mean.chl <-  raster:: extract(multi_chl, coords,
                         fun = mean, na.rm = F)
 as_tibble(mean.chl) %>% print(n = 5) # Preview values
 
-rownames(mean.chl)<- sites.coords$Site # Set site names
+rownames(mean.chl) <- sites.coords$Site # Set site names
 rownames(mean.chl)
 
 # Analysis per site ####
@@ -66,10 +66,26 @@ rownames(mean.chl)
 islotes.chl <- mean.chl[1, ]
 
 # Surface chlorophyll correction
-islotes.produc <- data.frame(date = dates,
+interanual.produc <- data.frame(date = dates,
                         Site = c('Los Islotes'),
                         Chlorophyll = islotes.chl*0.9)
 
 
 # Interanual chlorophyll average value
-round(mean(islotes.produc$Chlorophyll), 2)
+round(mean(islotes.chl), 2)
+
+
+# El Bajo ####
+ebes.chl <- mean.chl[1, ]
+
+# Surface chlorophyll correction
+ebes.produc <- data.frame(date = dates,
+                        Site = c('El Bajo'),
+                        Chlorophyll = ebes.chl*0.9)
+
+
+# Interanual chlorophyll average value
+round(mean(ebes.chl), 2)
+# Add El Bajo values to the interanual base
+interanual.produc <- rbind(interanual.produc, ebes.produc)
+
