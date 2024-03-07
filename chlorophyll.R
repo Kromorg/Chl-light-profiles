@@ -122,3 +122,18 @@ round(mean(ebes.chl), 2)
 # Add El Bajo values to the interanual base
 interanual.produc <- rbind(interanual.produc, ballena.produc)
 
+
+# El Gallo ####
+gallo.chl <- mean.chl[1, ]
+
+# Surface chlorophyll correction
+gallo.produc <- data.frame(date = dates,
+                        Site = c('El Gallo'),
+                        Chlorophyll = gallo.chl*0.9)
+
+
+# Interanual chlorophyll average value
+round(mean(ebes.chl), 2)
+
+# Add El Bajo values to the interanual base
+interanual.produc <- rbind(interanual.produc, gallo.produc)
