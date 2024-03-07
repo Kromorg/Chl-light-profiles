@@ -170,3 +170,13 @@ monthly.summary <- interanual.produc %>%
 as_tibble(monthly.summary)
 
 
+# Change numerical months to factors ####
+colnames(monthly.summary)[2] <- 'Month'
+monthly.summary$Month <- rep(month.name[], times = 6)
+monthly.summary$Month<- factor(monthly.summary$Month,
+                   levels = c('January', 'February', 'March',
+                              'April', 'May', 'June', 'July',
+                              'August', 'September', 'October',
+                              'November', 'December'),
+                   ordered = T)
+
