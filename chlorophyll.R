@@ -288,7 +288,7 @@ graph.ebes<- ggplot()+
        x = expression(Chlorophyll~(mg~m^{'-3'})),
        subtitle = c('El Bajo'))+
   scale_y_reverse()+ scale_fill_lancet()+
-  geom_hline(yintercept = c(18, 35), # 1% of light
+  geom_hline(yintercept = c(27, 42), # 1% of light
              colour = cols.pal,
              linetype = c('dotted', 'dotdash'))+
   scale_x_discrete(position = 'top')+
@@ -347,7 +347,7 @@ graph.lobos<- ggplot()+
        x = expression(Chlorophyll~(mg~m^{'-3'})),
        subtitle = c('Punta Lobos'))+
   scale_y_reverse()+ scale_fill_lancet()+
-  geom_hline(yintercept = c(18, 35), # 1% of light
+  geom_hline(yintercept = c(25, 39), # 1% of light
              colour = cols.pal,
              linetype = c('dotted', 'dotdash'))+
   scale_x_discrete(position = 'top')+
