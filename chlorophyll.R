@@ -161,3 +161,12 @@ dates, sites.coords, coords, mean.chl, islotes.chl,
 islotes.chl, ebes.chl, ebes.chl, lobos.chl,
 lobos.chl, ballena.chl, ballena.chl, gallo.chl,
 gallo.chl, ship.chl, ship.chl)
+
+
+# Monthly summary at each site ####
+monthly.summary <- interanual.produc %>%
+        group_by(Site, month(date)) %>%
+        summarise(Mean_chl = mean(Chlorophyll))
+as_tibble(monthly.summary)
+
+
