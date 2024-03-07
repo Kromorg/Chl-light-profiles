@@ -193,8 +193,8 @@ thick <- 25.2
 Z.m <- monthly.summary %>% filter(Month == 'February' &
                               Site == 'Los Islotes') %>%
                 dplyr:: select(Mean_chl) %>%
-        mutate(Z.m = thickthick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
-                           (. - Chl.o))))^0.5)) %>%
+        mutate(Z.m = thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
+                           (.[[2]] - Chl.o))))^0.5)) %>%
         .[[3]]
 feb <- data.frame(Depth = z,
                  Month = 'February',
@@ -218,7 +218,7 @@ sept<- data.frame(Depth = z,
 
 # Merge and create graphical object
 chl.islotes<-  rbind(feb, sept)
-paleta<- pal_lancet()(2)
+cols.pal<- pal_lancet()(2)
 
 graph.islotes<- ggplot()+
   geom_jitter(data = chl.islotes,
@@ -230,7 +230,7 @@ graph.islotes<- ggplot()+
        subtitle = c('Los Islotes'))+
   scale_y_reverse()+ scale_fill_lancet()+
   geom_hline(yintercept = c(18, 35), # 1% of light
-             colour = paleta,
+             colour = cols.pal,
              linetype = c('dotted', 'dotdash'))+
   scale_x_discrete(position = 'top')+
   scale_x_continuous(limits = c (0, 8), position = 'top')+
@@ -241,3 +241,63 @@ graph.islotes<- ggplot()+
         legend.title = element_text(size = 17))
 
 graph.islotes
+
+
+# El Bajo ####
+# Cold season: February
+
+z <- seq(from = 0, to = 100, by = 1)
+Chl.o <- 0.07
+h <- 30.2
+thick <- 25.2
+Z.m <- monthly.summary %>% filter(Month == 'February' &
+                              Site == 'El Bajo') %>%
+                dplyr:: select(Mean_chl) %>%
+        mutate(Z.m = thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
+                           (.[[2]] - Chl.o))))^0.5)) %>%
+        .[[3]]
+feb <- data.frame(Depth = z,
+                 Month = 'February',
+                 Chlorophyll = Chl.o + ((h/thick*((2*pi)^0.5)) *
+                   exp(-((z - Z.m)^2/ (2 * thick^2)))))
+
+# Warm season: September
+Chl.o<- 0.1
+h<- 79.4
+thick<- 27.4
+Z.m<- monthly.summary %>% filter(Month == 'September' &
+                              Site == 'El Bajo') %>%
+                dplyr:: select(Mean_chl) %>%
+         mutate(Z.m = thick* (abs(2* log(h / ((thick*(2 * pi)^0.5)*
+                                (.[[2]] - Chl.o))))^0.5)) %>%
+        .[[3]]
+sept<- data.frame(Depth = z,
+                 Month = 'September',
+                 Chlorophyll = Chl.o + ((h/thick*((2*pi)^0.5)) *
+                        exp(-((z - Z.m)^2/ (2 * thick^2)))))
+
+# Merge and create graphical object
+chl.ebes<-  rbind(feb, sept)
+
+graph.ebes<- ggplot()+
+  geom_jitter(data = chl.ebes,
+              aes(x = Chlorophyll, y = Depth, fill = Month),
+              shape = 21, size = 3, alpha = 0.4,
+              show.legend = F)+
+  labs(y = 'Depth (m)',
+       x = expression(Chlorophyll~(mg~m^{'-3'})),
+       subtitle = c('El Bajo'))+
+  scale_y_reverse()+ scale_fill_lancet()+
+  geom_hline(yintercept = c(18, 35), # 1% of light
+             colour = cols.pal,
+             linetype = c('dotted', 'dotdash'))+
+  scale_x_discrete(position = 'top')+
+  scale_x_continuous(limits = c (0, 8), position = 'top')+
+  theme_bw(base_size = 13)+
+  theme(panel.grid = element_blank(),
+        axis.line = element_blank(),
+        legend.text = element_text(size = 15),
+        legend.title = element_text(size = 17))
+
+graph.ebes
+
