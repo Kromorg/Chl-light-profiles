@@ -284,7 +284,7 @@ graph.ebes<- ggplot()+
               aes(x = Chlorophyll, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)',
+  labs(y = NULL,
        x = expression(Chlorophyll~(mg~m^{'-3'})),
        subtitle = c('El Bajo'))+
   scale_y_reverse()+ scale_fill_lancet()+
@@ -343,7 +343,7 @@ graph.lobos<- ggplot()+
               aes(x = Chlorophyll, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)',
+  labs(y = NULL,
        x = expression(Chlorophyll~(mg~m^{'-3'})),
        subtitle = c('Punta Lobos'))+
   scale_y_reverse()+ scale_fill_lancet()+
@@ -403,7 +403,7 @@ graph.ballena<- ggplot()+
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
   labs(y = 'Depth (m)',
-       x = expression(Chlorophyll~(mg~m^{'-3'})),
+       x = NULL,
        subtitle = c('La Ballena'))+
   scale_y_reverse()+ scale_fill_lancet()+
   geom_hline(yintercept = c(18, 35), # 1% of light
@@ -461,8 +461,8 @@ graph.gallo<- ggplot()+
               aes(x = Chlorophyll, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)',
-       x = expression(Chlorophyll~(mg~m^{'-3'})),
+  labs(y = NULL,
+       x = NULL,
        subtitle = c('El Gallo'))+
   scale_y_reverse()+ scale_fill_lancet()+
   geom_hline(yintercept = c(18, 35), # 1% of light
@@ -520,8 +520,8 @@ graph.ship<- ggplot()+
               aes(x = Chlorophyll, y = Depth, fill = Month),
               shape = 21, size = 3, alpha = 0.4,
               show.legend = F)+
-  labs(y = 'Depth (m)',
-       x = expression(Chlorophyll~(mg~m^{'-3'})),
+  labs(y = NULL,
+       x = NULL,
        subtitle = c('Salvatierra'))+
   scale_y_reverse()+ scale_fill_lancet()+
   geom_hline(yintercept = c(18, 35), # 1% of light
@@ -537,3 +537,10 @@ graph.ship<- ggplot()+
 
 graph.ship
 
+
+# Final graph ####
+final <- gridExtra::grid.arrange(graph.islotes, graph.ebes, graph.lobos,
+                        graph.ballena, graph.gallo, graph.ship,
+                        ncol = 3, nrow = 2)
+ggsave('Chlorophyll profiles.jpeg', plot = final, dpi = 320,
+          width = 3000, height = 2500, units = 'px')
