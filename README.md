@@ -11,3 +11,6 @@ Afterward, the amount of light expressed as a percentage at each meter was calcu
 Plotted profiles represent the calculated values during summer (September; red) and winter (February; blue).
 
 # *chlorophyll* branch
+Through this script, you can visualize how chlorophyll is distributed from the surface to 100 m. To estimate values throughout the water column, I used the formulas proposed by Hidalgo-González and Alvarez-Borrego [(2000)](https://www.researchgate.net/publication/263565814_Chlorophyll_profiles_and_the_water_column_structure_in_the_Gulf_of_California), where a correction for satellite-derived data and the season formulas were applied.
+
+Plotted profiles represent the calculated values during summer (September; red) and winter (February; blue), along with the dashed lines that depict light at 1% of the incident at surface.
